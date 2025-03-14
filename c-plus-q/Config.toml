@@ -1,0 +1,22 @@
+# Configuration file for "c_plus_q"
+# How to use see:
+# https://ballerina.io/learn/provide-values-to-configurable-variables/#provide-via-toml-syntax
+
+
+# "mlDsaKeystore" is an optional value
+# mlDsaKeystore = ""	# Type of STRING
+
+# "rsaKeystore" is an optional value
+# rsaKeystore = ""	# Type of STRING
+
+# "mlDsaCertFile" is an optional value
+# mlDsaCertFile = ""	# Type of STRING
+
+# "rsaCertFile" is an optional value
+# rsaCertFile = ""	# Type of STRING
+
+# "alias" is an optional value
+# alias = ""	# Type of STRING
+
+keystorePassword = "password"	# Type of STRING
+
