@@ -59,6 +59,4 @@ public function main() returns error? {
     
     boolean isVerified2 = check verifyWithRsa(input, sigRsa);
     io:println("RSA Signature Verification: ", isVerified2);
-    
-    return ();
 }
