@@ -47,17 +47,17 @@ public function main() returns error? {
 
     byte[] input = "Hello Ballerina".toBytes();
 
-    byte[] signature1 = check signWithMlDsa65(input);
-    io:println("ML DSA Signature: ", signature1.toBase64());
+    byte[] sigMlDsa = check signWithMlDsa65(input);
+    io:println("ML DSA Signature: ", sigMlDsa.toBase64());
 
-    byte[] signature2 = check signWithRsa(input);
-    io:println("RSA Signature: ", signature2.toBase64());
+    byte[] sigRsa = check signWithRsa(input);
+    io:println("RSA Signature: ", sigRsa.toBase64());
     
 
-    boolean isVerified1 = check verifyWithMlDsa65(input, signature1);
+    boolean isVerified1 = check verifyWithMlDsa65(input, sigMlDsa);
     io:println("ML DSA Signature Verification: ", isVerified1);
     
-    boolean isVerified2 = check verifyWithRsa(input, signature2);
+    boolean isVerified2 = check verifyWithRsa(input, sigRsa);
     io:println("RSA Signature Verification: ", isVerified2);
     
     return ();
