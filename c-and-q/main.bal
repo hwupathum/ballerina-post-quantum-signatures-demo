@@ -15,8 +15,8 @@ function signWithMlDsa65(byte[] input) returns byte[]|error {
         password: keystorePassword
     };
     crypto:PrivateKey privateKey = check crypto:decodeMlDsa65PrivateKeyFromKeyStore(keyStore, alias, keystorePassword);
-    byte[] signature = check crypto:signMlDsa65(input, privateKey);
-    return signature;
+    return check crypto:signMlDsa65(input, privateKey);
+    
 }
 
 function verifyWithMlDsa65(byte[] input, byte[] signature) returns boolean|error {
@@ -33,9 +33,7 @@ function signWithRsa(byte[] input) returns byte[]|error {
     };
     byte[] data = input;
     crypto:PrivateKey privateKey = check crypto:decodeRsaPrivateKeyFromKeyStore(keyStore, alias, keystorePassword);
-    byte[] signature = check crypto:signRsaSha256(data, privateKey);
-    return signature;
-}
+    return check crypto:signRsaSha256(data, privateKey);}
 
 function verifyWithRsa(byte[] input, byte[] signature) returns boolean|error {
 
@@ -54,9 +52,11 @@ public function main() returns error? {
     io:println("RSA Signature: ", sigRsaMlDsa.toBase64());
     
 
-    boolean isVerified1 = check verifyWithMlDsa65(input, sigMlDsa);
-    io:println("ML DSA Signature Verification: ", isVerified1);
+    boolean isVerified = check verifyWithMlDsa65(input, sigMlDsa);
+    io:println("ML DSA Signature Verification: ", isVerified);
     
-    boolean isVerified2 = check verifyWithRsa([...input, ...sigMlDsa], sigRsaMlDsa);
-    io:println("RSA Signature Verification: ", isVerified2);
+    isVerified = check verifyWithRsa([...input, ...sigMlDsa], sigRsaMlDsa);
+    io:println("RSA Signature Verification: ", isVerified);
 }
+
+
